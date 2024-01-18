@@ -1,5 +1,5 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    Player_bullet = sprites.create(img`
+    Player_bullet = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -16,12 +16,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Projectile)
-    Player_bullet.setVelocity(50, 50)
+        `, MyPlayer, 50, 50)
+    Player_bullet = MyPlayer
 })
 let Player_bullet: Sprite = null
+let MyPlayer: Sprite = null
 tiles.setCurrentTilemap(tilemap`level1`)
-let MyPlayer = sprites.create(img`
+MyPlayer = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
