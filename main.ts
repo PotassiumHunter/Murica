@@ -1,25 +1,99 @@
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    Player_bullet = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . 2 2 2 2 2 . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, MyPlayer, 50, 50)
-    Player_bullet = MyPlayer
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    Player_bullet = 3
 })
-let Player_bullet: Sprite = null
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile = MyPlayer
+    if (Player_bullet == 0) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . 2 2 2 2 2 . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, MyPlayer, -200, 0)
+    } else if (Player_bullet == 1) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . 2 2 2 2 2 . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, MyPlayer, 200, 0)
+    } else if (Player_bullet == 2) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . 2 2 2 2 2 . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, MyPlayer, 0, 200)
+    } else if (Player_bullet == 3) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . 2 2 2 2 2 . . . . . . . 
+            . . . . f f f f f . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, MyPlayer, 0, -200)
+    } else {
+    	
+    }
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    Player_bullet = 0
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    Player_bullet = 1
+})
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    Player_bullet = 2
+})
+let projectile: Sprite = null
+let Player_bullet = 0
 let MyPlayer: Sprite = null
 tiles.setCurrentTilemap(tilemap`level1`)
 MyPlayer = sprites.create(img`
