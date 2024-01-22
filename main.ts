@@ -86,12 +86,25 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Player_bullet = 0
 })
+function velocityis0 () {
+    if (MyPlayer.vx == 0 && MyPlayer.vy == 0) {
+        playerisnotmoving = false
+    }
+}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     Player_bullet = 1
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     Player_bullet = 2
 })
+function Fullyauto () {
+    if (playerisnotmoving == false) {
+        velocityis0()
+    } else {
+    	
+    }
+}
+let playerisnotmoving = false
 let projectile: Sprite = null
 let Player_bullet = 0
 let MyPlayer: Sprite = null
