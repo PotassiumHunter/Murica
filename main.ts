@@ -2,12 +2,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     Player_bullet = 3
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    spawn_location = tiles.getTilesByType(sprites.castle.tilePath3)
-    for (let index = 0; index < 4; index++) {
-        enemy_sprite = sprites.create(enemy_sprite_list._pickRandom(), SpriteKind.Enemy)
-        tiles.placeOnTile(enemy_sprite, spawn_location.removeAt(randint(0, spawn_location.length - 1)))
-        enemy_sprite.follow(MyPlayer, 20)
-    }
+    doSomething(enemy_sprite_list)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     playerbullet()
@@ -105,6 +100,14 @@ function semiauto () {
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     Player_bullet = 1
 })
+function doSomething (enemy_sprite_list: Image[]) {
+    spawn_location = tiles.getTilesByType(sprites.castle.tilePath3)
+    for (let index = 0; index < 4; index++) {
+        tiles.placeOnTile(enemy_sprite, spawn_location.removeAt(randint(0, spawn_location.length - 1)))
+        enemy_sprite = sprites.create(enemy_sprite_list._pickRandom(), SpriteKind.Enemy)
+        enemy_sprite.follow(MyPlayer, 20)
+    }
+}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     Player_bullet = 2
 })
@@ -206,15 +209,16 @@ function playerbullet () {
 }
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite, effects.spray, 500)
+    info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
     info.changeLifeBy(-1)
-    sprites.destroy(otherSprite, effects.spray, 500)
 })
-let projectile: Sprite = null
-let playerisnotmoving = false
 let enemy_sprite: Sprite = null
 let spawn_location: tiles.Location[] = []
+let projectile: Sprite = null
+let playerisnotmoving = false
 let Player_bullet = 0
 let enemy_sprite_list: Image[] = []
 let MyPlayer: Sprite = null
@@ -242,6 +246,7 @@ MyPlayer.setPosition(100, 50)
 controller.moveSprite(MyPlayer, 100, 100)
 scene.cameraFollowSprite(MyPlayer)
 info.setLife(3)
+info.setScore(0)
 enemy_sprite_list = [img`
     . . . . f f f f . . . . 
     . . f f f f f f f f . . 
@@ -294,4 +299,7 @@ enemy_sprite_list = [img`
     . . . f f f f f f . . . 
     . . . f f . . f f . . . 
     `]
+if (info.life() == 0) {
+    game.gameOver(false)
+}
 game.setGameOverMessage(false, "You Lose Lol")
