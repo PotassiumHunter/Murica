@@ -107,6 +107,10 @@ function doSomething (enemy_sprite_list: Image[]) {
         enemy_sprite = sprites.create(enemy_sprite_list._pickRandom(), SpriteKind.Enemy)
         enemy_sprite.follow(MyPlayer, 20)
     }
+    if (info.life() == 0) {
+        game.gameOver(false)
+    }
+    game.setGameOverMessage(false, "You Lose Lol")
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     Player_bullet = 2
@@ -299,7 +303,3 @@ enemy_sprite_list = [img`
     . . . f f f f f f . . . 
     . . . f f . . f f . . . 
     `]
-if (info.life() == 0) {
-    game.gameOver(false)
-}
-game.setGameOverMessage(false, "You Lose Lol")
